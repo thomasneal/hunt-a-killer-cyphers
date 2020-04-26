@@ -100,6 +100,9 @@ document.addEventListener("DOMContentLoaded", function(){
           case "z":
             return "a"
             break;
+          case " ":
+            return " "
+            break;
         }
       }
     } //end methods
