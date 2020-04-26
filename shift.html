@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="atbash.js"></script>
+    <script src="shift.js"></script>
 
     <title>Hunt a Killer Cyphers</title>
   </head>
@@ -20,11 +20,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html">Atbash <span class="sr-only">(current)</span></a>
-            </li>
             <li class="nav-item">
-              <a class="nav-link" href="shift.html">Shift</a>
+              <a class="nav-link" href="index.html">Atbash</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="shift.html">Shift <span class="sr-only">(current)</span></a>
             </li>
           </ul>
         </div>
@@ -34,8 +34,20 @@
       <form id="app">
         <div class="form-group">
           <label for="translate">Translation String</label>
-          <input type="text" class="form-control" v-on:blur="a_to_z(translate)" v-model="translate" id="translate" aria-describedby="translateHelp">
+          <input type="text" class="form-control" v-on:blur="shift(translate)" v-model="translate" id="translate" aria-describedby="translateHelp">
           <small id="translateHelp" class="form-text text-muted">Enter your string and select a translation method.</small>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="shift-number">Shift Number</label>
+            <input type="number" class="form-control" v-on:blur="shift(translate)" v-model="shiftNumber" id="shift-number" aria-describedby="translateHelp">
+          </div>
+          <div class="form-group col-md-6">
+            <div class="form-check">
+              <input class="form-check-input" v-on:blur="shift(translate)" v-model="negative" type="checkbox" value="" id="negative">
+              <label class="form-check-label" for="negative">Negative</label>
+            </div>
+          </div>    
         </div>
         <div v-if="translated" class="alert alert-success" role="alert">
           <h4 class="alert-heading">{{translated}}</h4>
